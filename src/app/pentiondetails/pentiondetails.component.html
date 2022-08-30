@@ -1,0 +1,64 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand text-white">Pention Management Portel</a>
+  <button class="btn btn-danger my-2 my-sm-0 " (click)="onLogout()">Logout</button>
+</nav>
+
+<br>
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <h2 class="fw-bold mb-2 text-uppercase">Aadhaar</h2>
+              <p class="text-white-50 mb-5">Get your pention amount and pention details</p>
+            <form #postForm="ngForm" (ngSubmit)="getDetailsPost(postForm)">
+                <div class="form-outline form-white mb-4">
+                <input type="text" id="email" class="form-control form-control-lg"
+                required
+                ngModel
+                name="aadhar"
+                placeholder="Aadhaar">
+              </div>
+              <button class="btn btn-outline-light btn-lg px-5" type="submit"  [disabled]="!postForm.valid" >Get Details</button>
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+   
+<div class="registration-form" *ngIf="FlagDetails">
+  <form>
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">User Details</p>
+
+
+      <div class="form-group">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Name : </strong>{{pentiondetail.name}} </li>
+          <li class="list-group-item"><strong>Account Number : </strong>{{pentiondetail.accountNumber}} </li>
+          <li class="list-group-item"><strong>Allowances : </strong>{{pentiondetail.allowances}}</li>
+          <li class="list-group-item"><strong>Bank : </strong> {{pentiondetail.bankName}}</li>
+          <li class="list-group-item"><strong>Date Of Birth : </strong> {{pentiondetail.dob}} </li>
+          <li class="list-group-item"><strong>PAN : </strong>{{pentiondetail.pan}}</li>
+          <li class="list-group-item"><strong>Salary Earned : </strong>{{pentiondetail.salaryEarned}} </li>
+          <li class="list-group-item"><strong>Bank Service Charge  : </strong>{{processPention.bankServiceCharge}}</li>
+          <li class="list-group-item"><strong>Pension Amount  : </strong>{{processPention.pensionAmount}}</li>
+        </ul>
+      </div>
+     
+
+  </form>
+</div>
+
+
+
+  <p class="text-center" *ngIf="!FlagDetails">{{message}}</p>
